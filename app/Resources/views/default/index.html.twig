@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center">Salutations !</h1>
+
+    <h2 class="text-center">Votez dès maintenant pour le bg de l'année !</h2>
+
+
+    {% for message in app.flashes('success') %}
+        <div class="flash-notice alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+
+                {% if item1.imageName %}
+                    <img class="img-fluid rounded mx-auto d-block" src="{{ asset('uploads/' ~ item1.imageName ) }}" alt="">
+                {% endif %}
+            <div class="mx-auto text-center" style="width: 200px;">
+                <a href="{{ url('vote_index', {item: item1.id}) }}">
+                    <button class="btn mx-auto mt-2 btn-success"> Voter pour {{ item1.titre }}</button>
+                </a>
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+
+
+                {% if item2.imageName %}
+                    <img class="img-fluid rounded mx-auto d-block" src="{{ asset('uploads/' ~ item2.imageName ) }}" alt="">
+                {% endif %}
+            <div class="mx-auto text-center" style="width: 200px;">
+                <a href="{{ url('vote_index', {item: item2.id}) }}">
+                    <button class="btn mx-auto mt-2 btn-success">Voter pour {{ item2.titre }} </button>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

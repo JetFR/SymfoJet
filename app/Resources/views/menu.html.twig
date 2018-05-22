@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url('homepage') }}">SymfoJet</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link {% if "homepage" in route  %}active{% endif %}" href="{{ url('homepage') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if "presentation" in route  %}active{% endif %}" href="{{ url('presentation_index') }}">Presentation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if "admin_post_" in route  %}active{% endif %}" href="{{ url('admin_post_index') }}">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if "tops" in route  %}active{% endif %}" href="{{ url('tops_index') }}">Tops</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if "search" in route  %}active{% endif %}" href="{{ url('searchhp') }}">Rechercher</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+            {% if app.user %}
+                <button class="btn btn-outline disabled"> <i class="fa fa-user"></i> {{ app.user.username }}</button>
+
+            {% else %}
+                <a href="{{ url('fos_user_security_login') }}" class="btn btn-success ">
+                    <i class="fas fa-sign-in-alt light"></i> Se connecter
+                </a>
+            {% endif  %}
+                {% if app.user == "admin" %}
+                    <a class="btn btn-outline btn-info" href="{{ url('admin') }}">Accéder à l'admin</a>
+                    <a class="btn btn-outline btn-danger" href="{{ url('fos_user_security_logout') }}">
+                        <i class="fas fa-sign-out-alt light"></i> Se déconnecter
+                    </a>
+
+                {% endif %}
+                {% if app.user == "titi" %}
+                    <a class="btn btn-outline btn-danger" href="{{ url('fos_user_security_logout') }}">
+                        <i class="fas fa-sign-out-alt light"></i> Se déconnecter
+                    </a>
+                {% endif %}
+        </span>
+
+        </div>
+    </div>
+</nav>
+
